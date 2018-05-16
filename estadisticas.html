@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Principal</title>
+    <title>Estadísticas</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
@@ -19,18 +18,13 @@
 
 </head>
 <body>
-    <h2>Listado de Países por Continente</h2>
+    
+    <h2>Estadísticas por Continente</h2>
 
     <div>
-        <select id="idSelectorContinente" onchange="muestraTabla()">
-            <option value="africa" selected>África</option>
-            <option value="americas">América</option>
-            <option value="europe">Europa</option>
-            <option value="asia">Asia</option>
-            <option value="oceania">Oceania</option>
-        </select>
+       
 
-        <a href="./estadisticas.html">Estadísticas</a>
+        <a href="./index.html">Listado de Paises por Continente</a>
         <a href="./viajando.html">Viajando</a>
 
    
@@ -38,19 +32,29 @@
 
     </div>
 
-    <table id="idTablaPaises">
+    <table id="estadistica">
         <tr>
-            <th id = "name" onclick="cambiaOrden('name','País')">País <i class="fa fa-caret-square-o-down"></i></th>
-
-            <th id = "capital" onclick="cambiaOrden('capital','Capital')">Capital</th>
-            <th id = "population" onclick="cambiaOrden('population','Población')">Población</th>
-            <th id = "currencies">Moneda</th>
-            <th>Bandera</th>
+            <th></th>
+            <th>Continente</th>
+            <th>Número Paises</th>
+            <th>Población Total</th>
+            <th>Población Media</th>
+        </tr>
+        <tr>
+            <td>África</td>
+            <td>América</td>
+            <td>Europa</td>
+            <td>Asia</td>
+            <td>Oceania</td>
+        </tr>
+        <tr>
+            <td>África</td>
+            <td>América</td>
+            <td>Europa</td>
+            <td>Asia</td>
+            <td>Oceania</td>
         </tr>
         <!-- Lista paises dinámica !!!-->
-
     </table>
-
-
 </body>
 </html>
