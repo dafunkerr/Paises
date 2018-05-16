@@ -45,18 +45,20 @@ function muestraTabla(){
                 var cell1 = row.insertCell(1);  //nombre
                 var cell2 = row.insertCell(2);  //precioCoste
                 var cell3 = row.insertCell(3);  //precioCoste
+                var cell4 = row.insertCell(4);  //precioCoste
                 
         
                 cell0.innerHTML = paises[i].name;
                 cell1.innerHTML = paises[i].capital;
                 cell2.innerHTML = paises[i].population;
+                cell3.innerHTML = paises[i].currencies[0].code;
                 var img = document.createElement('img');
                 img.src = paises[i].flag;
 
                 img.width = 100;
 
           
-                cell3.appendChild(img);
+                cell4.appendChild(img);
             
             
               
@@ -64,6 +66,7 @@ function muestraTabla(){
                 cell1.setAttribute("align","center");
                 cell2.setAttribute("align","center");
                 cell3.setAttribute("align","center");
+                cell4.setAttribute("align","center");
                
                
             }
@@ -94,6 +97,7 @@ function cambiaOrden (tipoOrden,nombreOrden){
     cabecera.innerHTML= 'Población';
 
     cabecera = document.getElementById(tipoOrden);
+
     
     campo = tipoOrden;
     ascendente = !ascendente;
