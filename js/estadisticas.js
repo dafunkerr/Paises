@@ -1,18 +1,9 @@
-var campo = "name";
-var ascendente = true;
-
-
-var miPeticion = new XMLHttpRequest();va
 var paises = null;
+var miPeticion = new XMLHttpRequest();
 
-
-
-
-function muestraTabla(){
+function leeContinentes(){
     
-
-    var inputContinente= document.getElementById("idSelectorContinente").value;
-    var paisesURL = "https://restcountries.eu/rest/v2/region/" + inputContinente;
+    var paisesURL = "https://restcountries.eu/rest/v2/all";
     miPeticion.onreadystatechange = function(){
 
         console.log("Estado de la petición: " + miPeticion.readyState);
@@ -23,27 +14,28 @@ function muestraTabla(){
             paises = JSON.parse(miPeticion.responseText);
             console.log(paises);
             console.log(paises.lenght);
-            var sort_by = function(field, reverse, primer){
-
-                var key = primer ? 
-                    function(x) {return primer(x[field])} : 
-                    function(x) {return x[field]};
-             
-                reverse = !reverse ? 1 : -1;
-             
-                return function (a, b) {
-                    return a = key(a), b = key(b), reverse * ((a > b) - (b > a));
-                  } 
-             }
-             //campo = document.getElementById("idSelectorOrden").value;
-             console.log(campo);
-             paises.sort(sort_by(campo, ascendente));
-
+            
+            /*
             for(var i = idTablaPaises.rows.length - 1; i > 0; i--){
                 idTablaPaises.deleteRow(i);
-            }
-            for (i = 0; i < (paises.length); i ++) {
+            }*/
+
             
+            var continentes = ["africa","americas","europe","oceania","asia"];
+            var propiedades = continentes["numPaises","poblacion","poblacionMedia"];
+             
+            propiedades["africa"]["numPaises"]= 3333;
+            propiedades["americas"]["poblacion"]= 4444;
+
+            console.log(propiedades["americas"]["poblacion"]);
+            console.log(propiedades["asia"]["poblacion"]);
+
+
+            for (i = 0; i < (paises.length); i ++) {
+                
+            }
+
+ /*       
                 var row = idTablaPaises.insertRow(i+1); // -1 para indicar que es en la última posición!
         
                 var cell0 = row.insertCell(0);  //codigo
@@ -74,8 +66,8 @@ function muestraTabla(){
                 cell4.setAttribute("align","center");
                
                
-            }
-           
+            
+   */        
         }
 
         console.log("Estado de la petición: " + miPeticion.readyState); // Estado 0 previo al open
@@ -84,30 +76,4 @@ function muestraTabla(){
     miPeticion.send(null);   // no hacemos upload
 }
 
-function swap(myArr, indexOne, indexTwo){
-    var tmpVal = myArr[indexOne];
-    myArr[indexOne] = myArr[indexTwo];
-    myArr[indexTwo] = tmpVal;
-    return myArr;
-  }
-
-function cambiaOrden (tipoOrden,nombreOrden){
-
-    var cabecera = "";
-    cabecera = document.getElementById("name");
-    cabecera.innerHTML= 'Pais';
-    cabecera = document.getElementById("capital");
-    cabecera.innerHTML= 'Capital';
-    cabecera = document.getElementById("population");
-    cabecera.innerHTML= 'Población';
-
-    cabecera = document.getElementById(tipoOrden);
-
-    
-    campo = tipoOrden;
-    ascendente = !ascendente;
-    if (ascendente) cabecera.innerHTML= nombreOrden + '<i class="fa fa-caret-square-o-up"></i>';
-    else cabecera.innerHTML= nombreOrden + '<i class="fa fa-caret-square-o-down"></i>';
-
-    muestraTabla();
-}
+leeContinentes();
