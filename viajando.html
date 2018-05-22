@@ -2,18 +2,17 @@
 <html lang="en">
 
 <head>
-    <title>Paises del Mundo</title>
+    <title>Bootstrap Example</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/main.css">
 </head>
 
-<body onload="leePaises('creaSelector')">
-    <nav class="navbar navbar-inverse">
+<body onload="viajando()">
+    <nav class="navbar navbar-inverse" onload "creaLineaSelector()">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -21,11 +20,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand">Paises del Mundo</a>
+                <a class="navbar-brand" href="./index.html">WebSiteName</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li class="active">
+                <ul class="nav navbar-nav" onload="leePaises('creaSelector')">
+                    <li>
                         <a href="./index.html">Home</a>
                     </li>
                     <li class="dropdown">
@@ -38,13 +37,11 @@
                                 <a href="#">Page 1-3</a>
                             </li>
                         </ul>
-
-
                     </li>
                     <li>
                         <a href="./estadisticas.html">Estadísticas</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="./viajando.html">Viajando</a>
                     </li>
                 </ul>
@@ -52,28 +49,26 @@
         </div>
     </nav>
 
-
     <div class="table-responsive">
+        <p id="idPaisOrigen" style="text-align:center"></p>
 
         <table class="table">
+
             <thead>
                 <tr>
-                    <th id="name" style="text-align:center" onclick="cambiaOrden('name','País')">País
-                        <i class="fa fa-caret-square-o-up"></i>
-                    </th>
-                    <th id="capital" style="text-align:center" onclick="cambiaOrden('capital','Capital')">Capital</th>
-                    <th id="population" style="text-align:center" onclick="cambiaOrden('population','Población')">Población</th>
-                    <th id="currencies" style="text-align:center">Moneda</th>
+                    <th style="text-align:center">País</th>
+                    <th style="text-align:center">Capital</th>
+                    <th style="text-align:center">Población</th>
+                    <th style="text-align:center">Moneda</th>
                     <th style="text-align:center">Bandera</th>
                 </tr>
-
             </thead>
             <tbody id="idTablaPaises">
-
             </tbody>
-
         </table>
     </div>
+
+
     <script src="js/main.js"></script>
 </body>
 
