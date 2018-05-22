@@ -1,10 +1,10 @@
-var campo = "name";
-var ascendente = false;
+var campo = "name"; //campo por el que ordenar
+var ascendente = false;  //usado para el orden
 var miPeticion = new XMLHttpRequest();
-var paises = null;
+var paises = null; //array de paises
 var pais = 0;
-var codigosFronteras = "";
-var continentes = [];
+var codigosFronteras = ""; //Usado para pasar varios paises como parámetro
+var continentes = []; //array de continentes existentes
 
 function leePaises(tipoLectura, continente) {
     let paisesURL = "https://restcountries.eu/rest/v2/";
@@ -42,11 +42,13 @@ function creaPaises() {
     }
     for (i = 0; i < (paises.length); i++) {
         var row = idTablaPaises.insertRow(i); // -1 para indicar que es en la última posición!
-        var cell0 = row.insertCell(0);  //codigo
-        var cell1 = row.insertCell(1);  //nombre
-        var cell2 = row.insertCell(2);  //precioCoste
-        var cell3 = row.insertCell(3);  //precioCoste
-        var cell4 = row.insertCell(4);  //precioCoste
+        row.setAttribute("onclick","creaViajando(" + i + ")");
+        console.log(row);
+        var cell0 = row.insertCell(0);
+        var cell1 = row.insertCell(1);
+        var cell2 = row.insertCell(2);
+        var cell3 = row.insertCell(3);
+        var cell4 = row.insertCell(4);
 
         cell0.setAttribute("align", "center");
         cell1.setAttribute("align", "center");
@@ -58,21 +60,16 @@ function creaPaises() {
         if (paises[i].translations.es == null) {
             cell0.innerHTML = paises[i].name;
         } else {
-            cell0.innerHTML = paises[i].translations.es;
+            cell0.innerHTML = paises[i].translations.es; // Si existe le paso el pais en español
         }
         cell1.innerHTML = paises[i].capital;
         cell2.innerHTML = paises[i].population.toLocaleString();
         cell3.innerHTML = paises[i].currencies[0].code;
         var img = document.createElement('img');
         img.src = paises[i].flag;
-        img.width = 100;
+        img.className = "responsive";
         img.onclick = "creaViajando(" + i + ")";
         cell4.appendChild(img);
-        if (arguments.callee.caller.name == "creaViajando2") {
-            var cell5 = row.insertCell(5);  //precioCoste
-            cell5.setAttribute("align", "center");
-            cell5.innerHTML = "<button onclick='creaViajando(" + i + ")' type='button'>Viaja</button>";
-        }
     }
 }
 
@@ -132,10 +129,10 @@ function creaEstadisticas() {
 
     for (i = 0; i < (continentes.length); i++) {
         var row = idTablaEstadisticas.insertRow(i); // -1 para indicar que es en la última posición!
-        var cell0 = row.insertCell(0);  
-        var cell1 = row.insertCell(1);  
+        var cell0 = row.insertCell(0);
+        var cell1 = row.insertCell(1);
         var cell2 = row.insertCell(2);
-        var cell3 = row.insertCell(3);  
+        var cell3 = row.insertCell(3);
         cell0.setAttribute("align", "center");
         cell1.setAttribute("align", "center");
         cell2.setAttribute("align", "center");
@@ -145,24 +142,35 @@ function creaEstadisticas() {
         cell2.innerHTML = continentes[i].poblacion.toLocaleString();
         cell3.innerHTML = Math.floor(continentes[i].poblacion / continentes[i].npaises).toLocaleString();
     }
-    creaSelector();
 }
 
 function creaViajando(paisViajar) {
+    let origen = document.getElementById("idBanderaOrigen")
     if (paisViajar == undefined) {
         pais = paises[Math.floor(Math.random() * paises.length)]; //SI es la 1a vez elijo un pais al azar 
     } else {
+        origen.appendChild(document.createTextNode(" -> ")); //añade texto al div creado. 
         pais = paises[paisViajar];  //Si no es la 1a vez ya cojo el pais que entra como parámetro en la función
     }
-    document.getElementById("idPaisOrigen").innerHTML = "Viajando desde " + pais.translations.es;
+    let img = document.createElement('img');
+    img.src = pais.flag;
+    img.className = "responsive";
+    origen.appendChild(img);
+
+    origen = document.getElementById("idPaisOrigen");
+    origen.innerHTML = "Viajando desde " + pais.translations.es;
     if (pais.borders.length == 0) {
-        document.getElementById("idPaisOrigen").innerHTML += " ... no se puede ir a pie a ningun lado!";
+        origen.innerHTML += " ... no se puede ir a pie a ningun lado!";
     } else {
         codigosFronteras = "";
         for (let i = 0; i < pais.borders.length; i++ , codigosFronteras += ";") codigosFronteras += pais.borders[i];
         leePaises("creaViajando2");
     }
-    creaSelector();
+
+
+
+
+
 }
 
 function creaViajando2() {
@@ -174,5 +182,6 @@ function viajando() {
 }
 
 function estadisticas() {
+
     leePaises('creaEstadisticas');
 }
