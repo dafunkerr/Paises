@@ -2,75 +2,73 @@
 <html lang="en">
 
 <head>
-    <title>Paises del Mundo</title>
+    <title>MundoApp</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/main.css">
 </head>
 
+<!--body style="background-image:url(./img/earth.jpg)"-->
+
 <body onload="leePaises('creaSelector')">
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand">Paises del Mundo</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="./index.html">Home</a>
-                    </li>
-                    <li class="dropdown active">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Continentes
-                            <span class="caret"></span>
+    <div class="container mx-auto">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+            <a class="navbar-brand" href="#">MundoApp</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">Home
+                            <span class="sr-only">(current)</span>
                         </a>
-                        <ul class="dropdown-menu" id="idSelectorContinente">
-                        </ul>
                     </li>
-                    <li>
-                        <a href="./estadisticas.html">Estadísticas</a>
+                    <li class="nav-item  active">
+                        <a class="nav-link" href="./tablapaises.html">Continentes</a>
                     </li>
-                    <li>
-                        <a href="./viajando.html">Viajando</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./estadisticas.html">Estadísticas</a>
                     </li>
-                </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./viajando.html">Viajando</a>
+                    </li>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th id="name" style="text-align:center" onclick="cambiaOrden('name','País')">País
-                        <i class="fa fa-caret-square-o-up"></i>
-                    </th>
-                    <th id="capital" style="text-align:center" onclick="cambiaOrden('capital','Capital')">Capital</th>
-                    <th id="population" style="text-align:center" onclick="cambiaOrden('population','Población')">Población</th>
-                    <th id="currencies" style="text-align:center">Moneda</th>
-                    <th style="text-align:center">Bandera</th>
-                </tr>
-            </thead>
-            <tbody id="idTablaPaises">
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th id="name" style="text-align:center" onclick="cambiaOrden('name','País')">País
+                            <i class="fa fa-caret-square-o-up"></i>
+                        </th>
+                        <th id="capital" style="text-align:center" onclick="cambiaOrden('capital','Capital')">Capital</th>
+                        <th id="population" style="text-align:center" onclick="cambiaOrden('population','Población')">Población</th>
+                        <th id="currencies" style="text-align:center">Moneda</th>
+                        <th style="text-align:center">Bandera</th>
+                    </tr>
+                </thead>
+                <tbody id="idTablaPaises">
+                </tbody>
+            </table>
+        </div>
+        <script src="js/main.js"></script>
+
+        <footer class="page-footer font-small blue pt-4 mt-4">
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">© 2018 Copyright:
+            </div>
+            <!-- Copyright -->
+        </footer>
     </div>
-    <script src="js/main.js"></script>
-
-    <footer class="page-footer font-small blue pt-4 mt-4">
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2018 Copyright:
-        </div>
-        <!-- Copyright -->
-    </footer>
 </body>
 
 </html>

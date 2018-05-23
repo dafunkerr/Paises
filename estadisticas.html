@@ -2,62 +2,70 @@
 <html lang="en">
 
 <head>
-    <title>Paises del Mundo</title>
+    <title>MundoApp</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/main.css">
 </head>
 
+<!--body style="background-image:url(./img/earth.jpg)"-->
+
 <body onload="estadisticas()">
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="./index.html">Paises del Mundo</a>
+   <div class="container mx-auto">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+            <a class="navbar-brand" href="#">MundoApp</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./tablapaises.html">Continentes</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./estadisticas.html">Estadísticas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./viajando.html">Viajando</a>
+                    </li>
             </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="./index.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="./tablapaises.html">Continentes</a>
-                    </li>
-                    <li class="active">
-                        <a href="./estadisticas.html">Estadísticas</a>
-                    </li>
-                    <li>
-                        <a href="./viajando.html">Viajando</a>
-                    </li>
-                </ul>
-            </div>
+        </nav>
+
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">Continente</th>
+                        <th style="text-align:center">Número Paises</th>
+                        <th style="text-align:center">Población Total</th>
+                        <th style="text-align:center">Población Media</th>
+                    </tr>
+                </thead>
+                <tbody id="idTablaEstadisticas">
+
+                </tbody>
+
+            </table>
         </div>
-    </nav>
+   
+    <div id="chartContainer" style="height: 270px; width: 100%;"></div>
 
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th style="text-align:center">Continente</th>
-                    <th style="text-align:center">Número Paises</th>
-                    <th style="text-align:center">Población Total</th>
-                    <th style="text-align:center">Población Media</th>
-                </tr>
-            </thead>
-            <tbody id="idTablaEstadisticas">
-
-            </tbody>
-
-        </table>
     </div>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 

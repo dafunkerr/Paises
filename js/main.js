@@ -42,7 +42,7 @@ function creaPaises() {
     }
     for (i = 0; i < (paises.length); i++) {
         var row = idTablaPaises.insertRow(i); // -1 para indicar que es en la última posición!
-        row.setAttribute("onclick","creaViajando(" + i + ")");
+        row.setAttribute("onclick", "creaViajando(" + i + ")");
         console.log(row);
         var cell0 = row.insertCell(0);
         var cell1 = row.insertCell(1);
@@ -115,16 +115,18 @@ function creaLineaSelector() {
 }
 
 function creaEstadisticas() {
-    let continentes = [];
+    //let continentes = [];
     let indice = 0;
     for (let i = 0; i < (paises.length); i++) {
         let continente = paises[i].region;
-        if (continentes.findIndex(indice => indice.region == continente) == -1) {
-            continentes[indice] = { region: continente, npaises: 0, poblacion: 0 }
-            indice++;
+        if (continente != "") {
+            if (continentes.findIndex(indice => indice.region == continente) == -1) {
+                continentes[indice] = { region: continente, npaises: 0, poblacion: 0 }
+                indice++;
+            }
+            continentes[continentes.findIndex(indice => indice.region == continente)].npaises++;
+            continentes[continentes.findIndex(indice => indice.region == continente)].poblacion += paises[i].population;
         }
-        continentes[continentes.findIndex(indice => indice.region == continente)].npaises++;
-        continentes[continentes.findIndex(indice => indice.region == continente)].poblacion += paises[i].population;
     }
 
     for (i = 0; i < (continentes.length); i++) {
@@ -142,6 +144,7 @@ function creaEstadisticas() {
         cell2.innerHTML = continentes[i].poblacion.toLocaleString();
         cell3.innerHTML = Math.floor(continentes[i].poblacion / continentes[i].npaises).toLocaleString();
     }
+    creaChart();
 }
 
 function creaViajando(paisViajar) {
@@ -166,11 +169,6 @@ function creaViajando(paisViajar) {
         for (let i = 0; i < pais.borders.length; i++ , codigosFronteras += ";") codigosFronteras += pais.borders[i];
         leePaises("creaViajando2");
     }
-
-
-
-
-
 }
 
 function creaViajando2() {
@@ -182,6 +180,42 @@ function viajando() {
 }
 
 function estadisticas() {
-
     leePaises('creaEstadisticas');
+
+}
+
+function creaChart() {
+    let datosChart=[];
+    for (let i=0; i<continentes.length; i++){
+        datosChart[i] = { label: continentes[i].region, y: continentes[i].poblacion}
+    }
+    console.log(datosChart);
+ 
+    for (let i=0; i<continentes.length; i++){
+        datosChart[i] = { label: continentes[i].region, y: continentes[i].poblacion}
+    }
+    var chart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        title: {
+            // text: "GDP Growth Rate - 2016",
+
+        },
+        axisY: {
+            title: "Población (en miles de millones)",
+            suffix: "%",
+            includeZero: true
+        },
+        axisX: {
+            title: "Continentes"
+        },
+        data: [{
+            type: "column",
+            yValueFormatString: "#,##0.0#\"%\"",
+            dataPoints: datosChart
+        }]
+    });
+
+
+    chart.render();
 }

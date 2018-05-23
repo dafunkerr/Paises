@@ -1,9 +1,11 @@
+
+
 .container {margin:2em 0;}
 /* 
 Extra small devices (portrait phones, less than 544px) 
 No media query since this is the default in Bootstrap because it is "mobile first"
 */
-* {font-size:1rem;} /*1rem = 16px*/
+* {font-size:0.8rem;} /*1rem = 16px*/
 /*
 ####################################################
 M E D I A  Q U E R I E S
@@ -21,17 +23,17 @@ Bootstrap 4 breakpoints
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {  
-  * {font-size:1.5rem;} /*1rem = 16px*/
+  * {font-size:1rem;} /*1rem = 16px*/
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) { 
-  * {font-size:1.5rem;} /*1rem = 16px*/
+  * {font-size:1rem;} /*1rem = 16px*/
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {  
-  * {font-size:1.5rem;} /*1rem = 16px*/    
+  * {font-size:1rem;} /*1rem = 16px*/    
 }
 
 /*
