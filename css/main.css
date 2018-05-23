@@ -1,5 +1,4 @@
 
-
 .container {margin:2em 0;}
 /* 
 Extra small devices (portrait phones, less than 544px) 
@@ -48,5 +47,6 @@ Custom media queries
  .responsive {
   width: 100%;
   max-width: 80px;
+  min-width: 20px;
   height: auto;
 }

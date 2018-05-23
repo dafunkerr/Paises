@@ -6,13 +6,14 @@ var pais = 0;
 var codigosFronteras = ""; //Usado para pasar varios paises como parámetro
 var continentes = []; //array de continentes existentes
 
-function leePaises(tipoLectura, continente) {
+function leePaises(tipoLectura) {
     let paisesURL = "https://restcountries.eu/rest/v2/";
     if (tipoLectura == "creaViajando2") {
         paisesURL += "alpha?codes=" + codigosFronteras;
     } else
         if (tipoLectura == "creaPaises") {
-            paisesURL += "region/" + continente;
+            let select = document.getElementById("idSelectorContinente");
+            paisesURL += "region/" + select.value;
         } else {
             paisesURL += "all";
         }
@@ -43,7 +44,6 @@ function creaPaises() {
     for (i = 0; i < (paises.length); i++) {
         var row = idTablaPaises.insertRow(i); // -1 para indicar que es en la última posición!
         row.setAttribute("onclick", "creaViajando(" + i + ")");
-        console.log(row);
         var cell0 = row.insertCell(0);
         var cell1 = row.insertCell(1);
         var cell2 = row.insertCell(2);
@@ -103,16 +103,21 @@ function creaSelector() {
         let conti = paises[i].region;
         if (!continentes.includes(conti)) continentes.push(conti);
     }
-    creaLineaSelector();
+
+    for (let continente of continentes) {
+        if (continente != "") {
+            var opcion = document.createElement('option');
+            opcion.innerHTML = continente;
+            opcion.value = continente;
+            select.appendChild(opcion);
+        }
+
+    }
+    leePaises('creaPaises');
 }
 
-function creaLineaSelector() {
-    for (let continente of continentes) {
-        var opcion = document.createElement('li');
-        opcion.innerHTML = '<a href="#" ' + 'onclick="leePaises(' + "'creaPaises'" + "," + "'" + continente + "')" + '">' + continente + '</a>';
-        select.appendChild(opcion);
-    }
-}
+
+
 
 function creaEstadisticas() {
     //let continentes = [];
@@ -185,14 +190,12 @@ function estadisticas() {
 }
 
 function creaChart() {
-    let datosChart=[];
-    for (let i=0; i<continentes.length; i++){
-        datosChart[i] = { label: continentes[i].region, y: continentes[i].poblacion}
+    let datosChart = [];
+    for (let i = 0; i < continentes.length; i++) {
+        datosChart[i] = { label: continentes[i].region, y: continentes[i].poblacion }
     }
-    console.log(datosChart);
- 
-    for (let i=0; i<continentes.length; i++){
-        datosChart[i] = { label: continentes[i].region, y: continentes[i].poblacion}
+    for (let i = 0; i < continentes.length; i++) {
+        datosChart[i] = { label: continentes[i].region, y: continentes[i].poblacion }
     }
     var chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
